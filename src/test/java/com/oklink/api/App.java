@@ -26,6 +26,7 @@ import com.oklink.api.bean.Transaction;
 import com.oklink.api.bean.TransactionsParams;
 import com.oklink.api.bean.TransactionsResponse;
 import com.oklink.api.bean.User;
+import com.oklink.api.bean.UserBalance;
 import com.oklink.api.bean.Wallet;
 
 /**
@@ -89,19 +90,25 @@ public class App {
 	
 	@Test
 	public void createOrder() throws Exception {
-		Order order = ol.createOrder(398);
+		Order order = ol.createOrder("bdd9abf7222e43bab68de5a629a1e8b6");
 		printInfo(order);
 	}
 	
 	@Test
 	public void getOrders() throws Exception {
-		OrdersResponse response = ol.getOrders(398);
+		OrdersResponse response = ol.getOrders("bdd9abf7222e43bab68de5a629a1e8b6");
 		printInfo(response);
 	}
 	
 	@Test
 	public void getUser() throws Exception {
 		User user = ol.getUser();
+		System.out.println(mapper.writeValueAsString(user));
+	}
+	
+	@Test
+	public void getUserBalance() throws Exception {
+		UserBalance user = ol.getUserBalance();
 		System.out.println(mapper.writeValueAsString(user));
 	}
 	

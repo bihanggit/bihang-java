@@ -2,12 +2,12 @@ package com.oklink.api.bean;
 
 public class Order {
 
-	private long id;
+	private String id;
 	private long user_id;
 	private long walletId;
 	private String walletName;
 	private String status;
-	private double totalBtc;
+//	private double totalBtc;
 	private String receiveAddress;
 	private String clientName;
 	private String clientAddress;
@@ -17,12 +17,20 @@ public class Order {
 	private String createdAt;
 	private String productName;
 	private Button button;
+	private String custom;
+	private String remark;
+	
+	private Amount totalBtc;
+	private Amount totalNative;
+	
+	private Transaction transaction;
 
-	public long getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -58,12 +66,8 @@ public class Order {
 		this.status = status;
 	}
 
-	public double getTotalBtc() {
+	public Amount getTotalBtc() {
 		return totalBtc;
-	}
-
-	public void setTotalBtc(double totalBtc) {
-		this.totalBtc = totalBtc;
 	}
 
 	public String getReceiveAddress() {
@@ -136,6 +140,42 @@ public class Order {
 
 	public void setButton(Button button) {
 		this.button = button;
+	}
+
+	public String getCustom() {
+		return custom;
+	}
+
+	public void setCustom(String custom) {
+		this.custom = custom;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public Amount getTotalNative() {
+		return totalNative;
+	}
+
+	public void setTotalNative(Amount totalNative) {
+		this.totalNative = totalNative;
+	}
+
+	public void setTotalBtc(Amount totalBtc) {
+		this.totalBtc = totalBtc;
+	}
+
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
 	}
 
 }

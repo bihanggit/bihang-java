@@ -22,6 +22,7 @@ import com.oklink.api.bean.Transaction;
 import com.oklink.api.bean.TransactionsParams;
 import com.oklink.api.bean.TransactionsResponse;
 import com.oklink.api.bean.User;
+import com.oklink.api.bean.UserBalance;
 import com.oklink.api.bean.Wallet;
 
 public interface OKLink {
@@ -48,19 +49,24 @@ public interface OKLink {
 	/**
 	 * 获取某button关联的order
 	 */
-	public OrdersResponse getOrders(long buttonId) throws OKLinkException, Exception;
+	public OrdersResponse getOrders(String buttonId) throws OKLinkException, Exception;
 	
-	public OrdersResponse getOrders(long buttonId, PageParams pageParams) throws OKLinkException, Exception;
+	public OrdersResponse getOrders(String buttonId, PageParams pageParams) throws OKLinkException, Exception;
 	
 	/**
 	 * 为某button创建order 
 	 */
-	public Order createOrder(long buttonId) throws OKLinkException, Exception;
+	public Order createOrder(String buttonId) throws OKLinkException, Exception;
+	
+	/**
+	 * 为某button创建order 
+	 */
+	public Order createOrder(String buttonId, String custom, String remark) throws OKLinkException, Exception;
 	
 	/**
 	 * 为某button创建order，添加用户信息
 	 */
-	public Order createOrder(long buttonId, String clientName, String clientAddress,String clientEmail, String clientPhone) throws OKLinkException, Exception;
+	public Order createOrder(String buttonId, String custom, String remark, String clientName, String clientAddress,String clientEmail, String clientPhone) throws OKLinkException, Exception;
 	
 	/**
 	 * 获取联系人
@@ -101,12 +107,20 @@ public interface OKLink {
 	 * 创建button并为之创建一个order
 	 */
 	public Order createOrder(Button button) throws OKLinkException, Exception;
+	
+	/**
+	 * 创建button并为之创建一个order
+	 */
+	public Order createOrder(Button button, String custom, String remark) throws OKLinkException, Exception;
+	
 	/**
 	 * 创建button并为之创建一个order，添加用户信息
 	 */
-	public Order createOrder(Button button, String clientName, String clientAddress, String clientEmail, String clientPhone) throws OKLinkException, Exception;
+	public Order createOrder(Button button, String custom, String remark, String clientName, String clientAddress, String clientEmail, String clientPhone) throws OKLinkException, Exception;
 	
 	public User getUser() throws OKLinkException, Exception;
+	
+	public UserBalance getUserBalance() throws OKLinkException, Exception;
 	
 	/**
 	 * 获取当前用户默认钱包
