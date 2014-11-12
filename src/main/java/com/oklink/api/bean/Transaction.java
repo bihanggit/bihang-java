@@ -11,6 +11,9 @@ public class Transaction {
 	private User sender;
 	private User recipient;
 	private Amount amount;
+	
+	private String hash;
+	private Integer confirmations;
 
 	public long getId() {
 		return id;
@@ -90,6 +93,22 @@ public class Transaction {
 
 	public void setAmount(Amount amount) {
 		this.amount = amount;
+	}
+
+	public String getHash() {
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
+
+	public Integer getConfirmations() {
+		return confirmations;
+	}
+
+	public void setConfirmations(Integer confirmations) {
+		this.confirmations = confirmations;
 	}
 
 }

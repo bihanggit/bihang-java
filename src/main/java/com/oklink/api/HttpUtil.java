@@ -39,7 +39,7 @@ public class HttpUtil {
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
 		this.accessToken = accessToken;
-		this.includeHostUrl = false;
+		this.includeHostUrl = true;
 	}
 	
 	String doGET(String url, Map<String,Object> params) throws Exception {
@@ -73,7 +73,7 @@ public class HttpUtil {
 			request = new HttpGet(baseUrl + url + query);
 			
 			String nonce = String.valueOf(System.currentTimeMillis());
-			String message = includeHostUrl?baseUrl:"" + nonce + url;
+			String message = nonce + (includeHostUrl?baseUrl:"") + url;
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
 			request.setHeader("ACCESS_KEY", this.apiKey);
@@ -133,7 +133,7 @@ public class HttpUtil {
 			request = new HttpDelete(baseUrl + url + query);
 			
 			String nonce = String.valueOf(System.currentTimeMillis());
-			String message = includeHostUrl?baseUrl:"" + nonce + url;
+			String message = nonce + (includeHostUrl?baseUrl:"") + url;
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
 			request.setHeader("ACCESS_KEY", this.apiKey);

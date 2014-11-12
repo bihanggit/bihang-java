@@ -35,6 +35,8 @@ import com.oklink.api.bean.TransactionResponse;
 import com.oklink.api.bean.TransactionsParams;
 import com.oklink.api.bean.TransactionsResponse;
 import com.oklink.api.bean.User;
+import com.oklink.api.bean.UserBalance;
+import com.oklink.api.bean.UserBalanceResponse;
 import com.oklink.api.bean.UserResponse;
 import com.oklink.api.bean.Wallet;
 import com.oklink.api.bean.WalletResponse;
@@ -124,17 +126,22 @@ public class OKLinkImpl implements OKLink {
 	}
 	
 	@Override
-	public Order createOrder(long buttonId) throws OKLinkException, Exception {
-		return createOrder(buttonId, null, null, null, null);
+	public Order createOrder(String buttonId) throws OKLinkException, Exception {
+		return createOrder(buttonId, null, null, null, null, null, null);
 	}
 	
 	@Override
-	public Order createOrder(long buttonId, String clientName, String clientAddress, 
+	public Order createOrder(String buttonId, String custom, String remark) throws OKLinkException, Exception {
+		return createOrder(buttonId, custom, remark, null, null, null, null);
+	}
+	
+	@Override
+	public Order createOrder(String buttonId, String custom, String remark, String clientName, String clientAddress, 
 				String clientEmail, String clientPhone)	throws OKLinkException, Exception {
 		
-		if(buttonId <= 0) {
-			throw new OKLinkException("Button  with id("+buttonId+") does not exists");
-		}
+//		if(buttonId <= 0) {
+//			throw new OKLinkException("Button  with id("+buttonId+") does not exists");
+//		}
 		
 		String createOrderUrl = "/api/v1/buttons/"+ buttonId +"/create_order";
 		
@@ -151,19 +158,21 @@ public class OKLinkImpl implements OKLink {
 		if(!OKLinkImpl.isEmpty(clientPhone)) {
 			map.put("client_phone", clientPhone);
 		}
+		map.put("custom", custom);
+		map.put("remark", remark);
 		return handleResponse(httpUtil.doPOST(createOrderUrl, map), OrderResponse.class).getOrder();
 	}
 	
 	@Override
-	public OrdersResponse getOrders(long buttonId) throws OKLinkException, Exception {
+	public OrdersResponse getOrders(String buttonId) throws OKLinkException, Exception {
 		return getOrders(buttonId, null);
 	}
 	
 	@Override
-	public OrdersResponse getOrders(long buttonId, PageParams pageParams) throws OKLinkException, Exception {
-		if(buttonId<=0) {
-			throw new OKLinkException("Button  with id("+buttonId+") does not exists");
-		}
+	public OrdersResponse getOrders(String buttonId, PageParams pageParams) throws OKLinkException, Exception {
+//		if(buttonId<=0) {
+//			throw new OKLinkException("Button  with id("+buttonId+") does not exists");
+//		}
 		String getOrderUrl = "/api/v1/buttons/"+buttonId+"/orders";
 		Map<String, Object> params = new HashMap<String, Object>();
 		if(pageParams != null) {
@@ -208,6 +217,12 @@ public class OKLinkImpl implements OKLink {
 	public User getUser() throws OKLinkException, Exception {
 		String usersUrl = "/api/v1/users";
 		return handleResponse(httpUtil.doGET(usersUrl, null), UserResponse.class).getUser();
+	}
+	
+	@Override
+	public UserBalance getUserBalance() throws OKLinkException, Exception {
+		String usersUrl = "/api/v1/users/balance";
+		return handleResponse(httpUtil.doGET(usersUrl, null), UserBalanceResponse.class).getUser();
 	}
 	
 	@Override
@@ -278,11 +293,16 @@ public class OKLinkImpl implements OKLink {
 	
 	@Override
 	public Order createOrder(Button button) throws OKLinkException, Exception {
-		return createOrder(button, null, null, null, null);
+		return createOrder(button, null, null, null, null, null, null);
 	}
 	
 	@Override
-	public Order createOrder(Button button, String clientName,String clientAddress, String clientEmail, String clientPhone)
+	public Order createOrder(Button button, String custom, String remark) throws OKLinkException, Exception {
+		return createOrder(button, custom, remark, null, null, null, null);
+	}
+	
+	@Override
+	public Order createOrder(Button button, String custom, String remark, String clientName,String clientAddress, String clientEmail, String clientPhone)
 			throws OKLinkException, Exception {
 		
 		if(button == null) {
@@ -330,6 +350,9 @@ public class OKLinkImpl implements OKLink {
 		map.put("include_address", button.isIncludeAddress()+"");
 		map.put("include_email", button.isIncludeEmail()+"");
 		map.put("include_phone", button.isIncludePhone()+"");
+		
+		map.put("custom", custom);
+		map.put("remark", remark);
 		
 		String orderUrl = "/api/v1/orders";
 		

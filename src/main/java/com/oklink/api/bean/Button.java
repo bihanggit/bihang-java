@@ -4,7 +4,7 @@ package com.oklink.api.bean;
 
 public class Button {
 
-	private long id;
+	private String id;
 
 	private long walletId;
 	
@@ -22,12 +22,14 @@ public class Button {
 
 	private Amount price;
 
-	public long getId() {
+
+
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
