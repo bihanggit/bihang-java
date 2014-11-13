@@ -1,6 +1,6 @@
-/target
-/.settings
-/.settings/*
-/oklink-java.iml
-/.idea
-/.idea/*
+target
+.settings/
+oklink-java.iml
+.idea/
+.project
+.classpath
