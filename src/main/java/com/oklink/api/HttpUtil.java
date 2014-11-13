@@ -29,13 +29,8 @@ public class HttpUtil {
 	
 	HttpUtil(String apiKey, String apiSecret,String accessToken) {
 //		this.baseUrl = "http://localhost"; //"https://oklink.com/api/v1/";
-//		this.baseUrl = "http://localtest.oklink.com";
+		this.baseUrl = "http://localtest.oklink.com";
 //		this.baseUrl = "https://www.oklink.com";
-		this(apiKey, apiSecret, accessToken, "http://localhost");
-	}
-	
-	HttpUtil(String apiKey, String apiSecret,String accessToken, String baseUrl) {
-		this.baseUrl = baseUrl;
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
 		this.accessToken = accessToken;

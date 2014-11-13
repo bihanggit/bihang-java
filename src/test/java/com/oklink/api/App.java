@@ -57,7 +57,7 @@ public class App {
 	@Before
 	public void init() throws Exception {
 		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET).build();
-//		ol = new OKLinkBuilder().withAccessToken("7b163b530b3e816f4f59e5e20b97452c9e7cf812b39cf7f1d8a069dd0b5ff716").build();
+//		ol = new OKLinkBuilder().withAccessToken("8cea637cfa1bdf8260cf6614f0847564d48e25ad58ca34e526611878b7bd18a6").build();
 		mapper = new ObjectMapper();
 	}
 	
@@ -110,6 +110,9 @@ public class App {
 	public void getUserBalance() throws Exception {
 		UserBalance user = ol.getUserBalance();
 		System.out.println(mapper.writeValueAsString(user));
+		for(Wallet wallet : user.getWalletBalances()) {
+			System.out.println(wallet.getBtcBalance() + ", " + (wallet.getBtcBalance().getAmount().doubleValue() + 10));
+		}
 	}
 	
 	@Test

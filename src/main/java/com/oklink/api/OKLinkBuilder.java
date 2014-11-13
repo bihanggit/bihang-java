@@ -4,7 +4,6 @@ public class OKLinkBuilder {
 	String accessToken;
 	String apiKey;
 	String apiSecret;
-//	String acct_id;
 
 	public OKLink build() {
 		return new OKLinkImpl(this);
@@ -20,10 +19,4 @@ public class OKLinkBuilder {
 		this.apiSecret = api_secret;
 		return this;
 	}
-
-//	public OKLinkBuilder withAccountId(String acct_id) {
-//		this.acct_id = acct_id;
-//		return this;
-//	}
-
 }

@@ -1,22 +1,25 @@
 package com.oklink.api.bean;
 
+import java.math.BigDecimal;
+
 public class Amount {
-	private double amount;
+	private BigDecimal amount;
 	private String currency;
 
 	public Amount() {
 	}
 	
 	public Amount(double amount, CoinType coinType) {
-		this.amount = amount;
+		this.amount = new BigDecimal(amount);
 		this.currency = coinType.name();
 	}
 	
-	public double getAmount() {
+
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 

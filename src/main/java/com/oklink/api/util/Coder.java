@@ -7,9 +7,6 @@ import org.apache.commons.codec.binary.Hex;
 
 /**
  * 加密类
- * 
- * @author 1
- * 
  */
 public class Coder {
 
@@ -24,7 +21,6 @@ public class Coder {
 		try {
 			Mac mac = Mac.getInstance("HmacSHA256");
 			mac.init(new SecretKeySpec(secret.getBytes(), "HmacSHA256"));
-//			System.out.println("length:" + mac.doFinal(message.getBytes()).length);
 			return new String(Hex.encodeHex(mac.doFinal(message.getBytes())));
 		} catch (Exception e) {
 			e.printStackTrace();
