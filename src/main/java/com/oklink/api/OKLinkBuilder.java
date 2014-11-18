@@ -4,6 +4,7 @@ public class OKLinkBuilder {
 	String accessToken;
 	String apiKey;
 	String apiSecret;
+	String host;
 
 	public OKLink build() {
 		return new OKLinkImpl(this);
@@ -17,6 +18,11 @@ public class OKLinkBuilder {
 	public OKLinkBuilder withApiKey(String api_key, String api_secret) {
 		this.apiKey = api_key;
 		this.apiSecret = api_secret;
+		return this;
+	}
+	
+	public OKLinkBuilder setHost(String host) {
+		this.host = host;
 		return this;
 	}
 }

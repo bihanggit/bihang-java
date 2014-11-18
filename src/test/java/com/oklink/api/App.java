@@ -56,7 +56,7 @@ public class App {
 
 	@Before
 	public void init() throws Exception {
-		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET).build();
+		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET).setHost("http://localhost").build();
 //		ol = new OKLinkBuilder().withAccessToken("8cea637cfa1bdf8260cf6614f0847564d48e25ad58ca34e526611878b7bd18a6").build();
 		mapper = new ObjectMapper();
 	}

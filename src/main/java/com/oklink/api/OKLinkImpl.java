@@ -49,7 +49,8 @@ public class OKLinkImpl implements OKLink {
 	private HttpUtil httpUtil;
 
 	public OKLinkImpl(OKLinkBuilder builder) {
-		this.httpUtil = new HttpUtil(builder.apiKey, builder.apiSecret, builder.accessToken);
+		//this.httpUtil = new HttpUtil(builder.apiKey, builder.apiSecret, builder.accessToken);
+		this.httpUtil = new HttpUtil(builder.apiKey, builder.apiSecret, builder.accessToken, builder.host);
 	}
 	
 

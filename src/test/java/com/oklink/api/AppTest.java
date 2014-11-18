@@ -18,6 +18,7 @@ public class AppTest {
 		params.setAmount(new Amount(0.001, CoinType.LTC));
 		params.setOffchain(false);
 		System.out.println(mapper.writeValueAsString(params));
+		
 	}
 	
 }

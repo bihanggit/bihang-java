@@ -5,8 +5,8 @@ public class User {
 	private String email;// 邮箱
 	private String nikeName;// 昵称
 	private String phone;// 手机号
-	private String timeZone;// 时区
-	private String nativeCurrency;// 币种 0：人民币 1：美元
+//	private String timeZone;// 时区
+//	private String nativeCurrency;// 币种 0：人民币 1：美元
 
 	private Amount btcBalance;//
 	private Amount ltcBalance;//
@@ -43,21 +43,21 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getTimeZone() {
-		return timeZone;
-	}
-
-	public void setTimeZone(String timeZone) {
-		this.timeZone = timeZone;
-	}
-
-	public String getNativeCurrency() {
-		return nativeCurrency;
-	}
-
-	public void setNativeCurrency(String nativeCurrency) {
-		this.nativeCurrency = nativeCurrency;
-	}
+//	public String getTimeZone() {
+//		return timeZone;
+//	}
+//
+//	public void setTimeZone(String timeZone) {
+//		this.timeZone = timeZone;
+//	}
+//
+//	public String getNativeCurrency() {
+//		return nativeCurrency;
+//	}
+//
+//	public void setNativeCurrency(String nativeCurrency) {
+//		this.nativeCurrency = nativeCurrency;
+//	}
 
 	public Amount getBtcBalance() {
 		return btcBalance;

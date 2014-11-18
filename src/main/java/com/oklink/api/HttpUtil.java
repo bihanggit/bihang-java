@@ -37,6 +37,20 @@ public class HttpUtil {
 		this.includeHostUrl = true;
 	}
 	
+	HttpUtil(String apiKey, String apiSecret,String accessToken, String host) {
+//		this.baseUrl = "http://localhost"; //"https://oklink.com/api/v1/";
+		if(host == null || host.length()<=0) {
+			this.baseUrl = "http://localtest.oklink.com";
+		} else {
+			this.baseUrl = host;
+		}
+//		this.baseUrl = "https://www.oklink.com";
+		this.apiKey = apiKey;
+		this.apiSecret = apiSecret;
+		this.accessToken = accessToken;
+		this.includeHostUrl = true;
+	}
+	
 	String doGET(String url, Map<String,Object> params) throws Exception {
 
 		String query = "";
