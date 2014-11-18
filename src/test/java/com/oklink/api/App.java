@@ -56,11 +56,11 @@ public class App {
 
 	@Before
 	public void init() throws Exception {
-//		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET)
-//				.setHost("http://localhost")
-//				.build();
-		ol = new OKLinkBuilder().withAccessToken("14e94a004c0b8e409612f6a3f87ad6e206f1e4fd4ead69ec87d61523f352b9eb")
-				.setHost("http://localhost").build();
+		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET)
+				.setHost("http://localhost")
+				.build();
+//		ol = new OKLinkBuilder().withAccessToken("14e94a004c0b8e409612f6a3f87ad6e206f1e4fd4ead69ec87d61523f352b9eb")
+//				.setHost("http://localhost").build();
 		mapper = new ObjectMapper();
 	}
 	

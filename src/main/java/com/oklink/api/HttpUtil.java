@@ -34,7 +34,7 @@ public class HttpUtil {
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
 		this.accessToken = accessToken;
-		this.includeHostUrl = true;
+		this.includeHostUrl = false;
 	}
 	
 	HttpUtil(String apiKey, String apiSecret,String accessToken, String host) {
@@ -48,7 +48,7 @@ public class HttpUtil {
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
 		this.accessToken = accessToken;
-		this.includeHostUrl = true;
+		this.includeHostUrl = false;
 	}
 	
 	String doGET(String url, Map<String,Object> params) throws Exception {
