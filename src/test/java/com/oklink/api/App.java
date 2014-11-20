@@ -2,6 +2,10 @@ package com.oklink.api;
 
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,12 +40,12 @@ import com.oklink.api.bean.Wallet;
 public class App {
 	
 	// localtest gengchj
-	static String API_KEY = "3371414643510980114";
-	static String API_SECRET = "58CB531175947E40487080B4166C3759";
+//	static String API_KEY = "3371414643510980114";
+//	static String API_SECRET = "58CB531175947E40487080B4166C3759";
 	
 	// localtest kastiny
-//	static String API_KEY = "5B536D218C7532126D6A9CF10ECD010B";
-//	static String API_SECRET = "3E99D7A11AD7FD0827358F4673851AE9";
+	static String API_KEY = "5B536D218C7532126D6A9CF10ECD010B";
+	static String API_SECRET = "3E99D7A11AD7FD0827358F4673851AE9";
 	
 	//www.oklink.com kastiny
 //	static String API_KEY = "1151414741802882121"; 
@@ -57,7 +61,9 @@ public class App {
 	@Before
 	public void init() throws Exception {
 		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET)
-				.setHost("http://localhost")
+//				.setHost("https://www.oklink.com")
+				.setHost("http://localtest.oklink.com")
+//				.setHost("http://local.oklink.com")
 				.build();
 //		ol = new OKLinkBuilder().withAccessToken("14e94a004c0b8e409612f6a3f87ad6e206f1e4fd4ead69ec87d61523f352b9eb")
 //				.setHost("http://localhost").build();

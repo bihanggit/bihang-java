@@ -27,24 +27,23 @@ public class HttpUtil {
 	private String accessToken;
 	private boolean includeHostUrl;
 	
+	private static String KEY = "KEY";
+	private static String SIGNATURE = "SIGNATURE";
+	private static String NONCE = "NONCE";
+	
 	HttpUtil(String apiKey, String apiSecret,String accessToken) {
-//		this.baseUrl = "http://localhost"; //"https://oklink.com/api/v1/";
-		this.baseUrl = "http://localtest.oklink.com";
-//		this.baseUrl = "https://www.oklink.com";
+		this.baseUrl = "https://www.oklink.com";
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
 		this.accessToken = accessToken;
-		this.includeHostUrl = false;
 	}
 	
 	HttpUtil(String apiKey, String apiSecret,String accessToken, String host) {
-//		this.baseUrl = "http://localhost"; //"https://oklink.com/api/v1/";
 		if(host == null || host.length()<=0) {
 			this.baseUrl = "http://localtest.oklink.com";
 		} else {
 			this.baseUrl = host;
 		}
-//		this.baseUrl = "https://www.oklink.com";
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
 		this.accessToken = accessToken;
@@ -75,8 +74,8 @@ public class HttpUtil {
 			
 			request = new HttpGet(baseUrl + url + query);
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
-			request.setHeader("ACCESS_NONCE", nonce);
+//			String nonce = String.valueOf(System.currentTimeMillis());
+//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			request = new HttpGet(baseUrl + url + query);
@@ -85,9 +84,9 @@ public class HttpUtil {
 			String message = nonce + (includeHostUrl?baseUrl:"") + url;
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
-			request.setHeader("ACCESS_KEY", this.apiKey);
-			request.setHeader("ACCESS_SIGNATURE", signature);
-			request.setHeader("ACCESS_NONCE", nonce);
+			request.setHeader(HttpUtil.KEY, this.apiKey);
+			request.setHeader(HttpUtil.SIGNATURE, signature);
+			request.setHeader(HttpUtil.NONCE, nonce);
 		}
 		
 		HttpClient httpClient = HttpClientBuilder.create().build(); //new DefaultHttpClient();
@@ -135,8 +134,8 @@ public class HttpUtil {
 			
 			request = new HttpDelete(baseUrl + url + query);
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
-			request.setHeader("ACCESS_NONCE", nonce);
+//			String nonce = String.valueOf(System.currentTimeMillis());
+//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			request = new HttpDelete(baseUrl + url + query);
@@ -145,9 +144,9 @@ public class HttpUtil {
 			String message = nonce + (includeHostUrl?baseUrl:"") + url;
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
-			request.setHeader("ACCESS_KEY", this.apiKey);
-			request.setHeader("ACCESS_SIGNATURE", signature);
-			request.setHeader("ACCESS_NONCE", nonce);
+			request.setHeader(HttpUtil.KEY, this.apiKey);
+			request.setHeader(HttpUtil.SIGNATURE, signature);
+			request.setHeader(HttpUtil.NONCE, nonce);
 		}
 		
 		HttpClient httpClient = HttpClientBuilder.create().build(); //new DefaultHttpClient();
@@ -187,8 +186,8 @@ public class HttpUtil {
 			}
 			request = post;
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
-			request.setHeader("ACCESS_NONCE", nonce);
+//			String nonce = String.valueOf(System.currentTimeMillis());
+//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			HttpPost post = new HttpPost(baseUrl + url + query);
@@ -201,9 +200,9 @@ public class HttpUtil {
 			String message = nonce + (includeHostUrl?baseUrl:"") + url + (requestBody == null ? "" : mapper.writeValueAsString(requestBody));
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
-			request.setHeader("ACCESS_KEY", this.apiKey);
-			request.setHeader("ACCESS_SIGNATURE", signature);
-			request.setHeader("ACCESS_NONCE", nonce);
+			request.setHeader(HttpUtil.KEY, this.apiKey);
+			request.setHeader(HttpUtil.SIGNATURE, signature);
+			request.setHeader(HttpUtil.NONCE, nonce);
 		}
 		
 
@@ -246,8 +245,8 @@ public class HttpUtil {
 			}
 			request = post;
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
-			request.setHeader("ACCESS_NONCE", nonce);
+//			String nonce = String.valueOf(System.currentTimeMillis());
+//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			HttpPut post = new HttpPut(baseUrl + url + query);
@@ -260,9 +259,9 @@ public class HttpUtil {
 			String message = nonce + (includeHostUrl?baseUrl:"") + url + (requestBody == null ? "" : mapper.writeValueAsString(requestBody));
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
-			request.setHeader("ACCESS_KEY", this.apiKey);
-			request.setHeader("ACCESS_SIGNATURE", signature);
-			request.setHeader("ACCESS_NONCE", nonce);
+			request.setHeader(HttpUtil.KEY, this.apiKey);
+			request.setHeader(HttpUtil.SIGNATURE, signature);
+			request.setHeader(HttpUtil.NONCE, nonce);
 		}
 		
 
@@ -285,6 +284,12 @@ public class HttpUtil {
                 is.close();
             }
 		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		HttpGet get = new HttpGet("http://www.baidu.com");
+		HttpClient httpClient = HttpClientBuilder.create().build(); //new DefaultHttpClient();
+		HttpResponse response = httpClient.execute(get);
 	}
 	
 }
