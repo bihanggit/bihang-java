@@ -29,8 +29,9 @@ public class Button {
 	}
 
 
-	public void setId(String id) {
+	public Button setId(String id) {
 		this.id = id;
+		return this;
 	}
 
 
@@ -49,8 +50,9 @@ public class Button {
 	}
 
 
-	public void setName(String name) {
+	public Button setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 
@@ -59,8 +61,9 @@ public class Button {
 	}
 
 
-	public void setStyle(int style) {
+	public Button setStyle(int style) {
 		this.style = style;
+		return this;
 	}
 
 
@@ -69,8 +72,9 @@ public class Button {
 	}
 
 
-	public void setCustom(String custom) {
+	public Button setCustom(String custom) {
 		this.custom = custom;
+		return this;
 	}
 
 
@@ -79,8 +83,9 @@ public class Button {
 	}
 
 
-	public void setCallbackUrl(String callbackUrl) {
+	public Button setCallbackUrl(String callbackUrl) {
 		this.callbackUrl = callbackUrl;
+		return this;
 	}
 
 
@@ -89,8 +94,9 @@ public class Button {
 	}
 
 
-	public void setSuccessUrl(String successUrl) {
+	public Button setSuccessUrl(String successUrl) {
 		this.successUrl = successUrl;
+		return this;
 	}
 
 
@@ -99,8 +105,9 @@ public class Button {
 	}
 
 
-	public void setPrice(Amount price) {
+	public Button setPrice(Amount price) {
 		this.price = price;
+		return this;
 	}
 
 
@@ -109,8 +116,9 @@ public class Button {
 	}
 
 
-	public void setIncludeName(boolean includeName) {
+	public Button setIncludeName(boolean includeName) {
 		this.includeName = includeName;
+		return this;
 	}
 
 
@@ -119,8 +127,9 @@ public class Button {
 	}
 
 
-	public void setIncludeAddress(boolean includeAddress) {
+	public Button setIncludeAddress(boolean includeAddress) {
 		this.includeAddress = includeAddress;
+		return this;
 	}
 
 
@@ -129,8 +138,9 @@ public class Button {
 	}
 
 
-	public void setIncludeEmail(boolean includeEmail) {
+	public Button setIncludeEmail(boolean includeEmail) {
 		this.includeEmail = includeEmail;
+		return this;
 	}
 
 
@@ -139,8 +149,9 @@ public class Button {
 	}
 
 
-	public void setIncludePhone(boolean includePhone) {
+	public Button setIncludePhone(boolean includePhone) {
 		this.includePhone = includePhone;
+		return this;
 	}
 
 }
