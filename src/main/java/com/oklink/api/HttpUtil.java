@@ -31,16 +31,10 @@ public class HttpUtil {
 	private static String SIGNATURE = "SIGNATURE";
 	private static String NONCE = "NONCE";
 	
-	HttpUtil(String apiKey, String apiSecret,String accessToken) {
-		this.baseUrl = "https://www.oklink.com";
-		this.apiKey = apiKey;
-		this.apiSecret = apiSecret;
-		this.accessToken = accessToken;
-	}
-	
 	HttpUtil(String apiKey, String apiSecret,String accessToken, String host) {
 		if(host == null || host.length()<=0) {
-			this.baseUrl = "http://localtest.oklink.com";
+//			this.baseUrl = "http://localtest.oklink.com";
+			this.baseUrl = "https://www.oklink.com";
 		} else {
 			this.baseUrl = host;
 		}
@@ -73,9 +67,6 @@ public class HttpUtil {
 			}
 			
 			request = new HttpGet(baseUrl + url + query);
-			
-//			String nonce = String.valueOf(System.currentTimeMillis());
-//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			request = new HttpGet(baseUrl + url + query);
@@ -124,7 +115,6 @@ public class HttpUtil {
 		
 		HttpRequestBase request;
 		
-		
 		if(this.accessToken != null && this.accessToken.length() > 0) {
 			if(query.length()<=0) {
 				query += "?access_token=" + this.accessToken;
@@ -133,9 +123,6 @@ public class HttpUtil {
 			}
 			
 			request = new HttpDelete(baseUrl + url + query);
-			
-//			String nonce = String.valueOf(System.currentTimeMillis());
-//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			request = new HttpDelete(baseUrl + url + query);
@@ -186,9 +173,6 @@ public class HttpUtil {
 			}
 			request = post;
 			
-//			String nonce = String.valueOf(System.currentTimeMillis());
-//			request.setHeader("ACCESS_NONCE", nonce);
-			
 		} else {
 			HttpPost post = new HttpPost(baseUrl + url + query);
 			if(requestBody != null) {
@@ -229,8 +213,6 @@ public class HttpUtil {
 	
 	public String doPUT(String url, Object requestBody) throws Exception {
 		
-//		url = baseUrl + url;
-		
 		HttpRequestBase request;
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -244,9 +226,6 @@ public class HttpUtil {
 				post.setEntity(new StringEntity(mapper.writeValueAsString(requestBody), "utf-8"));
 			}
 			request = post;
-			
-//			String nonce = String.valueOf(System.currentTimeMillis());
-//			request.setHeader("ACCESS_NONCE", nonce);
 			
 		} else {
 			HttpPut post = new HttpPut(baseUrl + url + query);
@@ -285,11 +264,4 @@ public class HttpUtil {
             }
 		}
 	}
-	
-	public static void main(String[] args) throws Exception {
-		HttpGet get = new HttpGet("http://www.baidu.com");
-		HttpClient httpClient = HttpClientBuilder.create().build(); //new DefaultHttpClient();
-		HttpResponse response = httpClient.execute(get);
-	}
-	
 }

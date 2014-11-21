@@ -28,4 +28,10 @@ public class Coder {
 		return null;
 	}
 
+	public static void main(String[] args) {
+		String secret = "58CB531175947E40487080B4166C3759";
+		String message = "1416487749/api/v1/wallets{\"name\": \"hehe\"}";
+		System.out.println(encryptHMAC(secret, message));
+	}
+	
 }

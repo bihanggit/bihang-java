@@ -2,10 +2,6 @@ package com.oklink.api;
 
 import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -60,13 +56,11 @@ public class App {
 
 	@Before
 	public void init() throws Exception {
-		ol = new OKLinkBuilder().withApiKey(API_KEY, API_SECRET)
+		ol = OKLinkBuilder.getInstance()
 //				.setHost("https://www.oklink.com")
 				.setHost("http://localtest.oklink.com")
 //				.setHost("http://local.oklink.com")
-				.build();
-//		ol = new OKLinkBuilder().withAccessToken("14e94a004c0b8e409612f6a3f87ad6e206f1e4fd4ead69ec87d61523f352b9eb")
-//				.setHost("http://localhost").build();
+				.buildWithApiKey(API_KEY, API_SECRET);
 		mapper = new ObjectMapper();
 	}
 	
