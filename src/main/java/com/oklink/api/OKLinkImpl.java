@@ -482,7 +482,7 @@ public class OKLinkImpl implements OKLink {
 		return handleResponse(httpUtil.doGET(transactionUrl, map), TransactionsResponse.class);
 	}
 	
-	@Override
+	/*@Override
 	public Transaction sendMoney(SendParams sendParams) throws OKLinkException, Exception {
 		if(sendParams == null) {
 			throw new OKLinkException("params missing!!!");
@@ -503,7 +503,7 @@ public class OKLinkImpl implements OKLink {
 		String transactionUrl = "/api/v1/transactions/send_money";
 		
 		return handleResponse(httpUtil.doPUT(transactionUrl, map), TransactionResponse.class).getTransaction();
-	}
+	}*/
 	
 	@Override
 	public Transaction requestMoney(RequestParams requestParams) throws OKLinkException, Exception {

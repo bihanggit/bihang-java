@@ -71,7 +71,7 @@ public class HttpUtil {
 		} else {
 			request = new HttpGet(baseUrl + url + query);
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
+			String nonce = String.valueOf(System.currentTimeMillis()*1000);
 			String message = nonce + (includeHostUrl?baseUrl:"") + url;
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
@@ -180,7 +180,7 @@ public class HttpUtil {
 			}
 			request = post;
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
+			String nonce = String.valueOf(System.currentTimeMillis()*1000);
 			String message = nonce + (includeHostUrl?baseUrl:"") + url + (requestBody == null ? "" : mapper.writeValueAsString(requestBody));
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			
@@ -234,7 +234,7 @@ public class HttpUtil {
 			}
 			request = post;
 			
-			String nonce = String.valueOf(System.currentTimeMillis());
+			String nonce = String.valueOf(System.currentTimeMillis()*1000);
 			String message = nonce + (includeHostUrl?baseUrl:"") + url + (requestBody == null ? "" : mapper.writeValueAsString(requestBody));
 			String signature = Coder.encryptHMAC(this.apiSecret, message);
 			

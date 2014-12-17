@@ -68,7 +68,7 @@ public class RequestParams {
 	}
 
 	public void check() throws OKLinkException {
-		if(RequestParams.isEmpty(from) || (targetType == 2 && RequestParams.isEmpty(areaCode)) || amount == null) {
+		if(RequestParams.isEmpty(from) || (targetType == 1 && RequestParams.isEmpty(areaCode)) || amount == null) {
 			throw new OKLinkException("params missing!!!");
 		}
 		if(amount == null || (!"BTC".equals(amount.getCurrency()) && !"LTC".equals(amount.getCurrency()))){

@@ -169,7 +169,7 @@ public interface OKLink {
 	/**
 	 * 付款
 	 */
-	public Transaction sendMoney(SendParams sendParams) throws OKLinkException, Exception;
+//	public Transaction sendMoney(SendParams sendParams) throws OKLinkException, Exception;
 
 	/**
 	 * 收款 
