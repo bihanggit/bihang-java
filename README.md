@@ -32,15 +32,6 @@ User user = oklink.getUser();
 UserBalance user = oklink.getUserBalance();
 ```
 
-##Send
-```java
-SendParams params = new SendParams();
-params.setToEmail("your_email");
-params.setAmount(new Amount(0.001, CoinType.LTC));
-params.setOffchain(false);
-Transaction transaction = oklink.sendMoney(params);
-```
-
 ##Request
 ```java
 RequestParams params = new RequestParams();
