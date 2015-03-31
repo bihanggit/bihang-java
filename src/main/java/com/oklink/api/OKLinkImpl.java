@@ -29,7 +29,6 @@ import com.oklink.api.bean.OrdersResponse;
 import com.oklink.api.bean.PageParams;
 import com.oklink.api.bean.RequestParams;
 import com.oklink.api.bean.Response;
-import com.oklink.api.bean.SendParams;
 import com.oklink.api.bean.Transaction;
 import com.oklink.api.bean.TransactionResponse;
 import com.oklink.api.bean.TransactionsParams;
@@ -445,7 +444,7 @@ public class OKLinkImpl implements OKLink {
 			throw new OKLinkException("Wallet  with id("+walletId+") does not exists");
 		}
 		
-		String walletUrl = "/api/v1/wallets/144/delete";
+		String walletUrl = "/api/v1/wallets/"+walletId+"/delete";
 		
 		return handleResponse(httpUtil.doPUT(walletUrl, null), WalletResponse.class).getWallet();
 	}
@@ -481,29 +480,6 @@ public class OKLinkImpl implements OKLink {
 		
 		return handleResponse(httpUtil.doGET(transactionUrl, map), TransactionsResponse.class);
 	}
-	
-	/*@Override
-	public Transaction sendMoney(SendParams sendParams) throws OKLinkException, Exception {
-		if(sendParams == null) {
-			throw new OKLinkException("params missing!!!");
-		}
-		sendParams.check();
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("to", sendParams.getTo());
-		map.put("target_type", sendParams.getTargetType()); 
-		map.put("amount", sendParams.getAmount().getAmount());
-		map.put("currency_type", "BTC".equals(sendParams.getAmount().getCurrency())?0:1);
-		map.put("wallet_id", sendParams.getWalletId());
-		map.put("offchain", sendParams.isOffchain()?0:1);
-		map.put("notes", sendParams.getNotes());
-		if(sendParams.getTargetType() == 2) {
-			map.put("area_code", sendParams.getAmount());
-		}
-		String transactionUrl = "/api/v1/transactions/send_money";
-		
-		return handleResponse(httpUtil.doPUT(transactionUrl, map), TransactionResponse.class).getTransaction();
-	}*/
 	
 	@Override
 	public Transaction requestMoney(RequestParams requestParams) throws OKLinkException, Exception {

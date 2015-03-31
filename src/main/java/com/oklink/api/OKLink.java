@@ -17,7 +17,6 @@ import com.oklink.api.bean.OrdersParams;
 import com.oklink.api.bean.OrdersResponse;
 import com.oklink.api.bean.PageParams;
 import com.oklink.api.bean.RequestParams;
-import com.oklink.api.bean.SendParams;
 import com.oklink.api.bean.Transaction;
 import com.oklink.api.bean.TransactionsParams;
 import com.oklink.api.bean.TransactionsResponse;
