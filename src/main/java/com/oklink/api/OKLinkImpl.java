@@ -114,8 +114,8 @@ public class OKLinkImpl implements OKLink {
 		map.put("wallet_id", button.getWalletId());
 		map.put("custom", button.getCustom());
 		
-		map.put("callbackUrl", button.getCallbackUrl());
-		map.put("successUrl", button.getSuccessUrl());
+		map.put("callback_url", button.getCallbackUrl());
+		map.put("success_url", button.getSuccessUrl());
 		
 		map.put("include_name", button.isIncludeName()+"");
 		map.put("include_address", button.isIncludeAddress()+"");
