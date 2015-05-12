@@ -17,6 +17,8 @@ public class UserBalance {
 	
 	private Amount totalBtcBalance;// 非冻结bitcoin余额
 	private Amount totalLtcBalance;// 非冻结人民币余额
+	private Amount totalCnyBalance;// 非冻结bitcoin余额
+	private Amount totalUsdBalance;// 非冻结人民币余额
 	
 	private List<Wallet> walletBalances = new ArrayList<Wallet>();
 
@@ -66,6 +68,22 @@ public class UserBalance {
 
 	public void setTotalLtcBalance(Amount totalLtcBalance) {
 		this.totalLtcBalance = totalLtcBalance;
+	}
+
+	public Amount getTotalCnyBalance() {
+		return totalCnyBalance;
+	}
+
+	public void setTotalCnyBalance(Amount totalCnyBalance) {
+		this.totalCnyBalance = totalCnyBalance;
+	}
+
+	public Amount getTotalUsdBalance() {
+		return totalUsdBalance;
+	}
+
+	public void setTotalUsdBalance(Amount totalUsdBalance) {
+		this.totalUsdBalance = totalUsdBalance;
 	}
 
 	public List<Wallet> getWalletBalances() {

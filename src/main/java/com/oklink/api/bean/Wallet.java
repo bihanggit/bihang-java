@@ -1,16 +1,17 @@
 package com.oklink.api.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class Wallet {
 	private long id;// 数据库表中记录唯一标识id
 	private long userId;// 用户Id
 	private String name;// 钱包名称
-	private Amount btcBalance;// 非冻结bitcoin余额
-	private Amount ltcBalance;// 非冻结人民币余额
-
+	private Amount balance;
+	@JsonProperty("isDefault")
 	private boolean isDefault; // 是否默认 0：否 1：是
-	private String btcAddress;// btc地址
-	private String ltcAddress;// ltc地址
+	private String address;
 	
 	private String createdAt;// 创建时间
 
@@ -38,44 +39,29 @@ public class Wallet {
 		this.name = name;
 	}
 
-	public Amount getBtcBalance() {
-		return btcBalance;
+	public Amount getBalance() {
+		return balance;
 	}
 
-	public void setBtcBalance(Amount btcBalance) {
-		this.btcBalance = btcBalance;
+	public void setBalance(Amount balance) {
+		this.balance = balance;
 	}
 
-	public Amount getLtcBalance() {
-		return ltcBalance;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setLtcBalance(Amount ltcBalance) {
-		this.ltcBalance = ltcBalance;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
+	@JsonIgnore
 	public boolean isDefault() {
 		return isDefault;
 	}
 
 	public void setDefault(boolean isDefault) {
 		this.isDefault = isDefault;
-	}
-
-	public String getBtcAddress() {
-		return btcAddress;
-	}
-
-	public void setBtcAddress(String btcAddress) {
-		this.btcAddress = btcAddress;
-	}
-
-	public String getLtcAddress() {
-		return ltcAddress;
-	}
-
-	public void setLtcAddress(String ltcAddress) {
-		this.ltcAddress = ltcAddress;
 	}
 
 	public String getCreatedAt() {
