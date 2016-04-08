@@ -1,7 +1,7 @@
 /target/
 /.settings/
-/oklink-java.iml
+/bihang-java.iml
 /.idea/
 /.project
 /.classpath
-/src/test/java/com/oklink/api/App.java
+/src/test/java/com/bihang/api/App.java
