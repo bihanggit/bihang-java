@@ -21,6 +21,7 @@ import com.bihang.api.util.Coder;
 
 public class HttpUtil {
 
+	
 	private String baseUrl;
 	private String apiKey;
 	private String apiSecret;
