@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.bihang.api.bean.AddressesParams;
 import com.bihang.api.bean.AddressesResponse;
 import com.bihang.api.bean.Application;
@@ -29,6 +31,7 @@ import com.bihang.api.bean.OrdersResponse;
 import com.bihang.api.bean.PageParams;
 import com.bihang.api.bean.RequestParams;
 import com.bihang.api.bean.Response;
+import com.bihang.api.bean.SendParams;
 import com.bihang.api.bean.Transaction;
 import com.bihang.api.bean.TransactionResponse;
 import com.bihang.api.bean.TransactionsParams;
@@ -446,9 +449,38 @@ public class BihangImpl implements Bihang {
 		
 		String walletUrl = "/api/v1/wallets/"+walletId+"/delete";
 		
-		return handleResponse(httpUtil.doPUT(walletUrl, null), WalletResponse.class).getWallet();
+		return handleResponse(httpUtil.doDELETE(walletUrl, null), WalletResponse.class).getWallet();
 	}
 	
+	@Override
+	public long transferBetweenWallets(long from, long to, double amount) throws BihangException, Exception {
+		
+		if (from <= 0 || to <= 0 || amount <= 0) {
+			throw new BihangException("Invalid parameters");
+		}
+		
+		String walletUrl = "/api/v1/wallets/transfer";
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("from", from);
+		map.put("to", to);
+		map.put("amount", amount);
+		
+		String text = httpUtil.doPOST(walletUrl, map);
+		try {
+			JSONObject res = JSON.parseObject(text);
+			if (!res.getBooleanValue("success"))
+				throw new BihangException(res.getString("error"));
+			
+			return res.getLongValue("payrecord_id");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BihangException(e.getMessage());
+		}
+		
+	}
+
+
 	@Override
 	public Transaction getTransaction(long transactionId) throws BihangException, Exception {
 		if(transactionId <= 0) {
@@ -504,6 +536,42 @@ public class BihangImpl implements Bihang {
 		String transactionUrl = "/api/v1/transactions/request_money";
 		return handleResponse(httpUtil.doPUT(transactionUrl, map), TransactionResponse.class).getTransaction();
 	}	
+
+	@Override
+	public Transaction sendMoney(SendParams sendParams) throws BihangException, Exception {
+		
+		if(sendParams == null) {
+			throw new BihangException("params missing!!!");
+		}
+		
+		sendParams.check();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("to", sendParams.getTo());
+		map.put("target_type", sendParams.getTargetType()); //0email 1phone 2remark 
+		map.put("amount", sendParams.getAmount().getAmount());
+		map.put("currency_type", "BTC".equals(sendParams.getAmount().getCurrency())?0:1);
+		if(sendParams.getTargetType() == 1) {
+			map.put("area_code", sendParams.getAreaCode());
+		}
+		String transactionUrl = "/api/v1/transactions/send_money";
+		return handleResponse(httpUtil.doPUT(transactionUrl, map), TransactionResponse.class).getTransaction();
+		
+	}
+
+
+	@Override
+	public Transaction cancelRequest(long transactionId) throws BihangException, Exception {
+		
+		if(transactionId <= 0) {
+			throw new BihangException("Transaction  with id("+transactionId+") does not exists");
+		}
+		
+		String transactionUrl = "/api/v1/transactions/"+transactionId+"/cancel_request";
+		
+		return handleResponse(httpUtil.doPUT(transactionUrl, null), TransactionResponse.class).getTransaction();
+	}
+
 
 	public <T extends Response> T handleResponse(String text, Class<T> clazz) throws BihangException {
 		try {

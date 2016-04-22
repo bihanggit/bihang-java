@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bihang.api.bean.AddressesParams;
 import com.bihang.api.bean.AddressesResponse;
+import com.bihang.api.bean.Amount;
 import com.bihang.api.bean.Application;
 import com.bihang.api.bean.ApplicationsResponse;
 import com.bihang.api.bean.Button;
@@ -17,6 +18,7 @@ import com.bihang.api.bean.OrdersParams;
 import com.bihang.api.bean.OrdersResponse;
 import com.bihang.api.bean.PageParams;
 import com.bihang.api.bean.RequestParams;
+import com.bihang.api.bean.SendParams;
 import com.bihang.api.bean.Transaction;
 import com.bihang.api.bean.TransactionsParams;
 import com.bihang.api.bean.TransactionsResponse;
@@ -154,6 +156,11 @@ public interface Bihang {
 	public Wallet setDefault(long walletId) throws BihangException, Exception;
 	
 	/**
+	 * 钱包间转账
+	 */
+	public long transferBetweenWallets(long from, long to, double amount) throws BihangException, Exception;
+	
+	/**
 	 * 获取交易详情列表
 	 */
 	public TransactionsResponse getTransactions() throws BihangException, Exception;
@@ -168,11 +175,16 @@ public interface Bihang {
 	/**
 	 * 付款
 	 */
-//	public Transaction sendMoney(SendParams sendParams) throws BihangException, Exception;
+	public Transaction sendMoney(SendParams sendParams) throws BihangException, Exception;
 
 	/**
 	 * 收款 
 	 */
 	public Transaction requestMoney(RequestParams requestParams) throws BihangException, Exception;
+	
+	/**
+	 * 取消收款
+	 */
+	public Transaction cancelRequest(long transactionId) throws BihangException, Exception;
 	
 }
