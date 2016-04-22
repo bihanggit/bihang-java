@@ -138,7 +138,7 @@ public interface Bihang {
 	/**
 	 * 创建钱包
 	 */
-	public Wallet createWallet(String name) throws BihangException, Exception;
+	public Wallet createWallet(String name, int currencyType) throws BihangException, Exception;
 	
 	/**
 	 * 删除钱包

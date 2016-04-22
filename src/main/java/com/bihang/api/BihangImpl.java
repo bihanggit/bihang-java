@@ -387,7 +387,7 @@ public class BihangImpl implements Bihang {
 	}
 	
 	@Override
-	public Wallet createWallet(String name) throws BihangException, Exception {
+	public Wallet createWallet(String name, int currencyType) throws BihangException, Exception {
 		String walletUrl = "/api/v1/wallets";
 		
 		if(BihangImpl.isEmpty(name)) {
@@ -401,6 +401,7 @@ public class BihangImpl implements Bihang {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("name", name);
+		map.put("currency_type", currencyType);
 		
 		return handleResponse(httpUtil.doPOST(walletUrl, map), WalletResponse.class).getWallet();
 	}
