@@ -526,7 +526,19 @@ public class BihangImpl implements Bihang {
 		map.put("from", requestParams.getFrom());
 		map.put("target_type", requestParams.getTargetType()); //0email 1phone 2remark 
 		map.put("amount", requestParams.getAmount().getAmount());
-		map.put("currency_type", "BTC".equals(requestParams.getAmount().getCurrency())?0:1);
+		int currencyType = 0;
+		switch(requestParams.getAmount().getCurrency()) {
+		case "LTC":
+			currencyType = 1;
+			break;
+		case "CNY":
+			currencyType = 2;
+			break;
+		case "USD":
+			currencyType = 3;
+			break;
+		}
+		map.put("currency_type", currencyType);
 		map.put("wallet_id", requestParams.getWalletId());
 		if(requestParams.getTargetType() == 1) {
 			map.put("area_code", requestParams.getAreaCode());
@@ -550,7 +562,19 @@ public class BihangImpl implements Bihang {
 		map.put("to", sendParams.getTo());
 		map.put("target_type", sendParams.getTargetType()); //0email 1phone 2remark 
 		map.put("amount", sendParams.getAmount().getAmount());
-		map.put("currency_type", "BTC".equals(sendParams.getAmount().getCurrency())?0:1);
+		int currencyType = 0;
+		switch(sendParams.getAmount().getCurrency()) {
+		case "LTC":
+			currencyType = 1;
+			break;
+		case "CNY":
+			currencyType = 2;
+			break;
+		case "USD":
+			currencyType = 3;
+			break;
+		}
+		map.put("currency_type", currencyType);
 		if(sendParams.getTargetType() == 1) {
 			map.put("area_code", sendParams.getAreaCode());
 		}

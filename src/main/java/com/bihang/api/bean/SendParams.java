@@ -82,8 +82,9 @@ public class SendParams {
 		if(SendParams.isEmpty(to) || (targetType == 2 && SendParams.isEmpty(areaCode)) || amount == null) {
 			throw new BihangException("params missing!!!");
 		}
-		if(amount == null || (!"BTC".equals(amount.getCurrency()) && !"LTC".equals(amount.getCurrency()))){
-			throw new BihangException("amount.currency must be 'BTC' or 'LTC'!!!");
+		if(amount == null || (!"BTC".equals(amount.getCurrency()) && !"LTC".equals(amount.getCurrency())
+				&& !"CNY".equals(amount.getCurrency()) && !"USD".equals(amount.getCurrency()))){
+			throw new BihangException("invalid amount");
 		}
 	}
 	
