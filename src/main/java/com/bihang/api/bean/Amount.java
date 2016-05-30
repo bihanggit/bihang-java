@@ -10,7 +10,7 @@ public class Amount {
 	}
 	
 	public Amount(double amount, CoinType coinType) {
-		this.amount = new BigDecimal(amount);
+		this.amount = new BigDecimal(String.valueOf(amount));
 		this.currency = coinType.name();
 	}
 	
@@ -30,5 +30,5 @@ public class Amount {
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-
+	
 }
